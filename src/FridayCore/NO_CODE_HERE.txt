@@ -1,0 +1,8 @@
+﻿
+  Important!
+
+  This project is only designed to perform deployment and release functionality without using custom gulp tasks.
+
+  1. When adding new feature projects, add them into References section of this project.
+  2. When adding new configuration file to feature project, update this project with a link to it 
+     (Add existing item -> select item -> click drop-down of Add button -> Add As Link drop-item)
