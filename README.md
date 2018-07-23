@@ -68,8 +68,10 @@ Install-Package FridayCore.AutoPackages
 This feature does is enabled by default because all it does is writes to the log file straight after
 the Sitecore has served first HTTP request, and also raises an even so custom logic can fire at the same moment.
 
+Install this feature using this command:
+
 ```ps1
-Install-Package FridayCore.AutoPackages
+Install-Package FridayCore.SitecoreStarted
 ```
 
 ## How to build
