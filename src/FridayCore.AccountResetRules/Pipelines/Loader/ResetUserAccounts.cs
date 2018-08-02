@@ -10,7 +10,7 @@ using Sitecore.Pipelines;
 
 namespace FridayCore.Pipelines.Loader
 {
-  internal class ResetUserAccounts 
+  internal class ResetUserAccounts
   {
     private MembershipProvider MembershipProvider { get; }
 
@@ -39,15 +39,17 @@ namespace FridayCore.Pipelines.Loader
 
     private void DoWork(object args)
     {
-      foreach(var username in AccountResetRules.Accounts)
+      foreach (var account in AccountResetRules.Accounts)
       {
+        var username = account.Name;
+
         try
         {
           var user = MembershipProvider.GetUser(username, false);
           if (user == null)
           {
             MembershipProvider.CreateUserAccount(username, "", true, new string[0], AccountResetRules.FeatureName);
-            user = MembershipProvider.GetUser(username, false) 
+            user = MembershipProvider.GetUser(username, false)
               ?? throw new InvalidOperationException($"Failed to find user after creating, UserName: {username}");
           }
 
@@ -58,7 +60,20 @@ namespace FridayCore.Pipelines.Loader
             user.UnlockUser();
           }
 
-          FridayLog.Info(AccountResetRules.FeatureName, $"User account was reset, UserName: {username}, Password: {password}, IsLockedOut: false");
+          var desiredPassword = account.Password;
+          if (!string.IsNullOrWhiteSpace(desiredPassword))
+          {
+            try
+            {
+              user.ChangePassword(password, desiredPassword);
+
+              FridayLog.Info(AccountResetRules.FeatureName, $"User account was reset, UserName: {username}, Password: {desiredPassword}, IsLockedOut: false");
+            }
+            catch (Exception ex)
+            {
+              FridayLog.Error(AccountResetRules.FeatureName, $"User account was reset, but failed to change password to desired one, UserName: {username}, CurrentPassword: {password}, DesiredPassword: {desiredPassword} IsLockedOut: false", ex);
+            }
+          }
         }
         catch (Exception ex)
         {
