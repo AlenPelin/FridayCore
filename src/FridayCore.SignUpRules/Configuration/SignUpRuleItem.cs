@@ -11,16 +11,19 @@ namespace FridayCore.Configuration
   {
     internal string Domain { get; }
 
+    public string Secret { get; }
+
     internal bool IsAdministrator { get; }
 
     internal List<string> Roles { get; }
 
-    internal SignUpRuleItem(string domain, bool isAdministrator, List<string> roles)
+    internal SignUpRuleItem(string domain, string secret, bool isAdministrator, List<string> roles)
     {
       Assert.IsNotNullOrEmpty(domain, nameof(domain));
       Assert.IsNotNull(roles, nameof(roles));
 
       Domain = domain;
+      Secret = secret?.Trim() ?? string.Empty;
       IsAdministrator = isAdministrator;
       Roles = roles;
     }
@@ -29,6 +32,7 @@ namespace FridayCore.Configuration
     {
       return 
         string.Equals(Domain, other?.Domain, StringComparison.OrdinalIgnoreCase) &&
+        string.Equals(Secret, other?.Secret, StringComparison.Ordinal) &&
         true;
     }
 
@@ -41,16 +45,17 @@ namespace FridayCore.Configuration
     {
       unchecked
       {
-        return Domain.GetHashCode();
+        return (Domain.GetHashCode() * 397) ^ Secret.GetHashCode();
       }
     }
 
     internal static SignUpRuleItem ParseRule(string ruleXPath, XmlElement rule)
     {
       var domain = ParseDomain(rule, ruleXPath);
+      var secret = rule.GetAttribute("secret");
       var isAdministrator = ParseIsAdministrator(rule, ruleXPath);
       var roles = ParseRoles(rule, ruleXPath);
-      var result = new SignUpRuleItem(domain, isAdministrator, roles);
+      var result = new SignUpRuleItem(domain, secret, isAdministrator, roles);
 
       return result;
     }

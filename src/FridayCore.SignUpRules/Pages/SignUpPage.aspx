@@ -85,6 +85,9 @@
                                 <asp:Label runat="server" ID="Label1" CssClass="login-label" Text="<%#Translate.Text(Texts.Email)%>" />
                                 <asp:TextBox ID="Email" CssClass="form-control" placeholder="<%#Translate.Text(TEXTS_ENTER_EMAIL)%>" runat="server" ValidationGroup="SignUp" />
                                 <asp:RequiredFieldValidator ID="EmailValidator" runat="server" ControlToValidate="Email" ValidationGroup="SignUp" />
+
+                                <asp:Label runat="server" CssClass="login-label" Text="(Optional) Secret Passphrase" />
+                                <asp:TextBox ID="Secret" TextMode="Password" CssClass="form-control" placeholder="<%#Translate.Text(TEXTS_ENTER_SECRET)%>" runat="server" ValidationGroup="SignUp" />
                             </div>
 
                             <asp:Button runat="server" ValidationGroup="SignUp" OnClick="SignUpClick" UseSubmitBehavior="True" CssClass="btn btn-primary btn-block" Text="<%#Translate.Text(TEXTS_SIGN_UP)%>" />

@@ -19,6 +19,7 @@ namespace FridayCore.Pages
   public partial class SignUpPage : System.Web.UI.Page
   {
     public const string TEXTS_ENTER_EMAIL = "Enter email";
+    public const string TEXTS_ENTER_SECRET = "Enter secret passphrase if you have it";
     public const string TEXTS_SIGN_UP = "Sign Up";
     public const string TEXTS_BACK_TO_LOGIN = "Back to login page";
 
@@ -119,12 +120,13 @@ namespace FridayCore.Pages
         return;
       }
 
-      var email = Email.Text;
-      var name = UserName.Text;
+      var email = Email.Text.Trim();
+      var name = UserName.Text.Trim();
+      var secret = Secret.Text.Trim();
 
       try
       {
-        DoSignUp(name, email);
+        DoSignUp(name, email, secret);
       }
       catch (Exception ex)
       {
@@ -134,7 +136,7 @@ namespace FridayCore.Pages
       }
     }
 
-    private void DoSignUp(string name, string email)
+    private void DoSignUp(string name, string email, string secret)
     {
       var rules = SignUpRules.Rules
         .Where(d => email.EndsWith($"@{d.Domain}", StringComparison.OrdinalIgnoreCase))
@@ -145,6 +147,20 @@ namespace FridayCore.Pages
         RenderError("The provided email is not in allowed domains list", false);
 
         return;
+      }
+
+      if (!string.IsNullOrEmpty(secret))
+      {
+        rules = rules
+          .Where(x => string.Equals(x.Secret, secret, StringComparison.Ordinal))
+          .ToArray();
+
+        if (!rules.Any())
+        {
+          RenderError("The provided email is not in allowed domains list, or the secret is invalid", false);
+
+          return;
+        }
       }
 
       var rule = rules.First() ?? throw new ArgumentNullException();

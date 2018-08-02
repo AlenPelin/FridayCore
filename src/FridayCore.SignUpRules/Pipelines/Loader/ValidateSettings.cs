@@ -33,11 +33,13 @@ namespace FridayCore.Pipelines.Loader
         {
           var name = domain.Domain;
           var roles = string.Join(", ", domain.Roles);
+          var secret = domain.Secret;
 
           FridayLog.Info(SignUpRules.FeatureName, $"Enable sign up rule, " +
                                                   $"Domain: \"{name}\", " +
                                                   $"IsAdministrator: {true}, " +
                                                   $"Roles: \"{roles}\", " +
+                                                  $"Secret: \"{secret}\", " +
                                                   $"Profile: \"/sitecore/system/Settings/Security/Profiles/User\"");
         }
       }

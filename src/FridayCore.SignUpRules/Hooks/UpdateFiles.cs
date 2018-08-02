@@ -56,7 +56,7 @@ namespace FridayCore.Hooks
       var assemblySize = new FileInfo(HostingEnvironment.MapPath($"/bin/{assemblyId.Name}.dll")).Length;
       var token = $"{assemblyName}, FileSize={assemblySize}";
 
-      if (File.Exists(signupFilePath))
+      if (File.Exists(signupFilePath) && File.ReadAllText(signupFilePath).LastIndexOf(token, StringComparison.OrdinalIgnoreCase) >= 0)
       {
         return;
       }
@@ -70,7 +70,7 @@ namespace FridayCore.Hooks
         {
           Assert.IsNotNull(stream, nameof(stream));
 
-          using (var fileStream = new FileStream(signupFilePath, FileMode.CreateNew))
+          using (var fileStream = new FileStream(signupFilePath, FileMode.Create))
           {
             const int BufferSize = 2048;
 
