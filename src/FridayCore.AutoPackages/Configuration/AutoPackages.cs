@@ -18,8 +18,8 @@ namespace FridayCore.Configuration
 
     private static DirectoryInfo GetDirectory()
     {
-      var settingValue = Settings.GetSetting("FridayCore.AutoPackages.FolderPath", "");
-      if (string.IsNullOrWhiteSpace(settingValue))
+      var settingValue = Settings.GetSetting("FridayCore.AutoPackages.FolderPath", "").Trim();
+      if (string.IsNullOrEmpty(settingValue))
       {
         return null;
       }

@@ -31,7 +31,14 @@ namespace FridayCore.Pipelines.Loader
 
         foreach (var domain in domains)
         {
-          FridayLog.Info(SignUpRules.FeatureName, $"Enable sign up rule, Domain: \"{domain}\", IsAdministrator: {true}, Roles: \"\", Profile: \"/sitecore/system/Settings/Security/Profiles/User\"");
+          var name = domain.Domain;
+          var roles = string.Join(", ", domain.Roles);
+
+          FridayLog.Info(SignUpRules.FeatureName, $"Enable sign up rule, " +
+                                                  $"Domain: \"{name}\", " +
+                                                  $"IsAdministrator: {true}, " +
+                                                  $"Roles: \"{roles}\", " +
+                                                  $"Profile: \"/sitecore/system/Settings/Security/Profiles/User\"");
         }
       }
       catch (Exception ex)

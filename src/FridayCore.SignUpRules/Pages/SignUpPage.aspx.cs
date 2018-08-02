@@ -136,14 +136,18 @@ namespace FridayCore.Pages
 
     private void DoSignUp(string name, string email)
     {
-      var rule = SignUpRules.Rules.FirstOrDefault(d => email.EndsWith($"@{d.Domain}", StringComparison.OrdinalIgnoreCase));
-      if (rule == null)
+      var rules = SignUpRules.Rules
+        .Where(d => email.EndsWith($"@{d.Domain}", StringComparison.OrdinalIgnoreCase))
+        .ToArray();
+
+      if (!rules.Any())
       {
         RenderError("The provided email is not in allowed domains list", false);
 
         return;
       }
 
+      var rule = rules.First() ?? throw new ArgumentNullException();
       var roles = rule.Roles;
       var isAdministrator = rule.IsAdministrator;
       var username = name.Contains("\\") ? name : $"sitecore\\{name}";

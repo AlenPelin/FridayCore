@@ -1,4 +1,5 @@
-﻿using Sitecore.Diagnostics;
+﻿using System;
+using Sitecore.Diagnostics;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Xml;
 
 namespace FridayCore.Configuration
 {
-  internal sealed class SignUpRuleItem
+  internal sealed class SignUpRuleItem : IEquatable<SignUpRuleItem>
   {
     internal string Domain { get; }
 
@@ -24,6 +25,26 @@ namespace FridayCore.Configuration
       Roles = roles;
     }
 
+    public bool Equals(SignUpRuleItem other)
+    {
+      return 
+        string.Equals(Domain, other?.Domain, StringComparison.OrdinalIgnoreCase) &&
+        true;
+    }
+
+    public override bool Equals(object obj)
+    {
+      return obj is SignUpRuleItem item && Equals(item);
+    }
+
+    public override int GetHashCode()
+    {
+      unchecked
+      {
+        return Domain.GetHashCode();
+      }
+    }
+
     internal static SignUpRuleItem ParseRule(string ruleXPath, XmlElement rule)
     {
       var domain = ParseDomain(rule, ruleXPath);
@@ -39,7 +60,7 @@ namespace FridayCore.Configuration
       const string DOMAIN = "domain";
 
       var domain = rule.GetAttribute(DOMAIN).Trim();
-      if (string.IsNullOrWhiteSpace(domain)
+      if (string.IsNullOrEmpty(domain)
         || domain.Contains('|')
         || domain.Contains(';')
         || domain.Contains(',')
@@ -66,8 +87,8 @@ namespace FridayCore.Configuration
       const string IS_ADMINISTRATOR = "isAdministrator";
 
       var result = false; // default value
-      var attributeValue = rule.GetAttribute(IS_ADMINISTRATOR);
-      if (!string.IsNullOrWhiteSpace(attributeValue) && !bool.TryParse(attributeValue, out result))
+      var attributeValue = rule.GetAttribute(IS_ADMINISTRATOR).Trim();
+      if (!string.IsNullOrEmpty(attributeValue) && !bool.TryParse(attributeValue, out result))
       {
         var message =
             $"The {ruleXPath} element's {IS_ADMINISTRATOR} attribute value " +
@@ -106,8 +127,8 @@ namespace FridayCore.Configuration
     {
       const string NAME = "name";
 
-      var roleName = role.GetAttribute(NAME);
-      if (string.IsNullOrWhiteSpace(roleName))
+      var roleName = role.GetAttribute(NAME).Trim();
+      if (string.IsNullOrEmpty(roleName))
       {
         var message =
             $"The {roleXPath} element's {NAME} attribute value is missing or empty.\r\n" +

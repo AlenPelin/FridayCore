@@ -23,14 +23,14 @@ namespace FridayCore.Hooks
     {
       try
       {
-        var loginFilePath = HostingEnvironment.MapPath("/sitecore/login/default.aspx");
+        var loginFilePath = HostingEnvironment.MapPath("/sitecore/login/default.aspx") ?? throw new ArgumentNullException();
         if (!File.Exists(loginFilePath))
         {
           return;
         }
 
-        var signupFilePath = HostingEnvironment.MapPath("/sitecore/signup/default.aspx");
         var lines = File.ReadAllLines(loginFilePath);
+        var signupFilePath = HostingEnvironment.MapPath("/sitecore/signup/default.aspx");
         if (SignUpRules.Enabled)
         {
           InjectLink(loginFilePath, lines);
@@ -50,10 +50,21 @@ namespace FridayCore.Hooks
 
     private void DeployPage(string signupFilePath)
     {
-      if (!File.Exists(signupFilePath))
+      var assembly = this.GetType().Assembly;
+      var assemblyId = assembly.GetName();
+      var assemblyName = assemblyId.FullName;
+      var assemblySize = new FileInfo(HostingEnvironment.MapPath($"/bin/{assemblyId.Name}.dll")).Length;
+      var token = $"{assemblyName}, FileSize={assemblySize}";
+
+      if (File.Exists(signupFilePath))
       {
+        return;
+      }
+      else
+      {
+        Log.Info(SignUpRules.FeatureName, "Deploy sign up page /sitecore/signup page");
+
         Directory.CreateDirectory(Path.GetDirectoryName(signupFilePath));
-        var assembly = this.GetType().Assembly;
 
         using (var stream = assembly.GetManifestResourceStream(@"FridayCore.Pages.SignUpPage.aspx"))
         {
@@ -71,6 +82,8 @@ namespace FridayCore.Hooks
               fileStream.Write(buffer, 0, len);
             }
           }
+
+          File.AppendAllText(signupFilePath, $"<!-- {token} - {DateTime.UtcNow:s} -->");
         }
       }
     }

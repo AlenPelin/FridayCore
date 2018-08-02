@@ -32,7 +32,7 @@ namespace FridayCore.Configuration
       {
         var ruleXPath = $"{featureXPath}/*[{index++}]";
         var rule = SignUpRuleItem.ParseRule(ruleXPath, item);
-        if (result.Any(x => string.Equals(x.Domain, rule.Domain, StringComparison.OrdinalIgnoreCase)))
+        if (result.Any(x => x.Equals(rule)))
         {
           var message =
               $"The {featureXPath} element contains two or more duplicate email domains.\r\n" +

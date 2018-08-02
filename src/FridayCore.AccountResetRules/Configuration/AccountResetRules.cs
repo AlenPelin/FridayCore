@@ -57,8 +57,8 @@ namespace FridayCore.Configuration
     {
       const string name = "name";
 
-      var userName = account.GetAttribute(name);
-      if (string.IsNullOrWhiteSpace(userName) || userName.Length < $"a\\b".Length || !userName.Contains("\\"))
+      var userName = account.GetAttribute(name).Trim();
+      if (string.IsNullOrEmpty(userName) || userName.Length < $"a\\b".Length || !userName.Contains("\\"))
       {
         var message =
             $"The {ruleXPath} element's {name} attribute value " +

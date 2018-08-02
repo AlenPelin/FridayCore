@@ -61,7 +61,7 @@ namespace FridayCore.Pipelines.Loader
           }
 
           var desiredPassword = account.Password;
-          if (!string.IsNullOrWhiteSpace(desiredPassword))
+          if (!string.IsNullOrEmpty(desiredPassword))
           {
             try
             {
