@@ -107,7 +107,7 @@ namespace FridayCore.Hooks
           var next = lines[i + 1];
           if (next.Contains("new-user-account"))
           {
-            break;
+            return;
           }
 
           lines[i + 1] = next + Code;

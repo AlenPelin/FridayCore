@@ -40,8 +40,6 @@ namespace FridayCore.Configuration
               $"XML:\r\n{featureElement.OuterXml}";
 
           throw new ConfigurationException(message);
-
-          continue;
         }
 
         result.Add(rule);

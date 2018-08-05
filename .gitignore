@@ -1,4 +1,3 @@
-*.pubxml
 *.user
 .vs/
 node_modules/
