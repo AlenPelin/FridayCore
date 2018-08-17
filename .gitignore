@@ -8,6 +8,8 @@ src/FridayCore.AccountResetRules/bin/
 src/FridayCore.AccountResetRules/obj/
 src/FridayCore.AutoPackages/bin/
 src/FridayCore.AutoPackages/obj/
+src/FridayCore.ApplicationContainer/**/bin/
+src/FridayCore.ApplicationContainer/**/obj/
 src/FridayCore.Common/bin/
 src/FridayCore.Common/obj/
 src/FridayCore.Sample/bin/

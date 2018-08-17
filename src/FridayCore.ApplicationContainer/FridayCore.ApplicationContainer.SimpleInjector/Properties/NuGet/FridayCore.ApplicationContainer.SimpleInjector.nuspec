@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FridayCore.ApplicationContainer.SimpleInjector</id>
+    <version>0.0.0.0</version>
+    <title></title>
+    <authors>Alen Pelin</authors>
+    <owners>Alen Pelin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A SimpleInjector ApplicationContainer for Sitecore</description>
+    <dependencies>
+      <dependency id="FridayCore.Common" version="0.0.0.0" />
+      <dependency id="SimpleInjector" version="0.0.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\..\FridayCore.ApplicationContainer\App_Config\Include\FridayCore\FridayCore.ApplicationContainer.config" target="content\App_Config\Include\FridayCore\FridayCore.ApplicationContainer.config" />
+    <file src="..\..\BootstrapContainer.cs.pp" target="content\BootstrapContainer.cs.pp" />
+    <file src="..\..\bin\Release\FridayCore.ApplicationContainer.Base.dll" target="lib\FridayCore.ApplicationContainer.Base.dll" />
+    <file src="..\..\bin\Release\FridayCore.ApplicationContainer.Base.pdb" target="lib\FridayCore.ApplicationContainer.Base.pdb" />
+  </files>
+</package>
