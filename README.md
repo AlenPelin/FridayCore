@@ -10,9 +10,10 @@ Install all features using this command:
 Install-Package FridayCore
 ```
 
+## Features
 Most features are disabled by default, so check config files for instructions.
 
-## Feature 1. Sign up rules
+### Feature 1. Sign up rules
 
 Let users create Sitecore accounts when they have email address which belongs to
 whilelisted domain.
@@ -30,7 +31,7 @@ Install this feature using this command:
 Install-Package FridayCore.SignUpRules
 ```
 
-## Feature 2. Account reset rules
+### Feature 2. Account reset rules
 
 Reset specific user accounts on every Sitecore restart (for example, well-known
 `sitecore\admin`):
@@ -47,7 +48,7 @@ Install this feature using this command:
 Install-Package FridayCore.AccountResetRules
 ```
 
-## Feature 3. Auto packages
+### Feature 3. Auto packages
 
 Enable automatic soft installation of Sitecore packages placed in configured folder on every Sitecore restart.
 Soft mode means skipping all item sub-trees that already exist, which means it will only do installation only
@@ -63,7 +64,7 @@ Install this feature using this command:
 Install-Package FridayCore.AutoPackages
 ```
 
-## Feature 4. Sitecore started event
+### Feature 4. Sitecore started event
 
 This feature does is enabled by default because all it does is writes to the log file straight after
 the Sitecore has served first HTTP request, and also raises an even so custom logic can fire at the same moment.
@@ -73,6 +74,30 @@ Install this feature using this command:
 ```ps1
 Install-Package FridayCore.SitecoreStarted
 ```
+## Foundation Features
+
+### Feature 1. Application Container
+
+Application containers allow for the separation of framework and application dependencies, 
+allowing developers to define stronger boundaries between their code and the framework they are building on. 
+
+FridayCore.ApplicationContainer is an abstract implementation of this concept for Sitecore.
+
+> Application Containers are only available for Sitecore 9.
+
+Following are the concrete implementations backed by a range of DI libraries:
+
+[SimpleUnjector](https://simpleinjector.org/index.html)
+
+```ps1
+Install-Package FridayCore.ApplicationContainer.SimpleInjector
+```
+
+*More DI libraries to come*
+
+
+
+
 
 ## How to build
 
