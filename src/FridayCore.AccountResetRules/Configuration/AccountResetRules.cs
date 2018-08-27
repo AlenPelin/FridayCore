@@ -70,7 +70,20 @@ namespace FridayCore.Configuration
         throw new ConfigurationException(message);
       }
 
-      return new AccountInfo(userName, account.GetAttribute("password"));
+      var writePasswordToLog = false;
+      var writePasswordToLogValue = account.GetAttribute("writePasswordToLog").Trim();
+      if (!string.IsNullOrEmpty(writePasswordToLogValue) && !bool.TryParse(writePasswordToLogValue, out writePasswordToLog))
+      {
+        var message =
+            $"The {ruleXPath} element's {"writePasswordToLog"} attribute value " +
+            $"represents invalid {writePasswordToLog.GetType().Name} value \"{writePasswordToLogValue}\". " +
+            $"\r\n" +
+            $"XML:\r\n{account.OuterXml}";
+
+        throw new ConfigurationException(message);
+      }
+
+      return new AccountInfo(userName, account.GetAttribute("password"), writePasswordToLog);
     }
   }
 }

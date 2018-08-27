@@ -67,7 +67,7 @@ namespace FridayCore.Pipelines.Loader
             {
               user.ChangePassword(password, desiredPassword);
 
-              FridayLog.Info(AccountResetRules.FeatureName, $"User account was reset, UserName: {username}, Password: {desiredPassword}, IsLockedOut: false");
+              FridayLog.Info(AccountResetRules.FeatureName, $"User account was reset, UserName: {username}, Password: {(account.WritePasswordToLog ? desiredPassword : "*******")}, IsLockedOut: false");
             }
             catch (Exception ex)
             {
