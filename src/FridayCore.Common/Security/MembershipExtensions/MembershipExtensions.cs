@@ -26,7 +26,13 @@ namespace FridayCore.Security.MembershipExtensions
           user.Roles.Add(Role.FromName(role));
         }
 
-        FridayLog.Audit(feature, $"Create user account, UserName: \"{username}\", IsAdministrator: {isAdministrator}, Roles: \"{string.Join(", ", roles)}\", Email: \"{email}\"");
+        var message = $"Create user account, " +
+                      $"UserName: \"{username}\", " +
+                      $"IsAdministrator: {isAdministrator}, " +
+                      $"Roles: \"{string.Join(", ", roles)}\", " +
+                      $"Email: \"{email}\"";
+
+        FridayLog.Audit(feature, message);
 
         return user;
       }
@@ -38,7 +44,10 @@ namespace FridayCore.Security.MembershipExtensions
         }
         catch (Exception ex)
         {
-          FridayLog.Error(feature, $"Failed to delete incomplete user account, UserName: \"{username}\"", ex);
+          var error = $"Failed to delete incomplete user account, " +
+                      $"UserName: \"{username}\"";
+
+          FridayLog.Error(feature, error, ex);
         }
 
         throw;

@@ -17,7 +17,7 @@ namespace FridayCore.Events
     {
       Timer.Stop();
 
-      FridayLog.Info(SitecoreStarted.FeatureName, $"Sitecore is up and serving requests. Elapsed: {Timer.Elapsed}");
+      FridayLog.Info(SitecoreStarted.FeatureName, $"Sitecore is up and serving requests. Elapsed: \"{Timer.Elapsed}\"");
     }
   }
 }
