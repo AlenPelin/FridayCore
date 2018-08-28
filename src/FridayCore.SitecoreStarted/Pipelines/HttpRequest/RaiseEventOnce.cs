@@ -37,7 +37,7 @@ namespace FridayCore.Pipelines.HttpRequest
           }
           catch (Exception ex)
           {
-             FridayLog.Error(SitecoreStarted.FeatureName, $"Failed to process {SitecoreStarted.EventName} event", ex);
+             FridayLog.Error(SitecoreStarted.FeatureName, $"Failed to process \"{SitecoreStarted.EventName}\" event", ex);
           }
         }).Start();
 

@@ -34,7 +34,7 @@ namespace FridayCore.Hooks
     {
       var directory = AutoPackages.Directory;
 
-      FridayLog.Info(AutoPackages.FeatureName, $"Install auto packages in folder: {directory.FullName}");
+      FridayLog.Info(AutoPackages.FeatureName, $"Install auto packages in folder: \"{directory.FullName}\"");
 
       Start(directory);
 
@@ -71,7 +71,7 @@ namespace FridayCore.Hooks
         return;
       }
 
-      FridayLog.Info(AutoPackages.FeatureName, $"Install auto package (Skip on conflicts): {file.FullName}");
+      FridayLog.Info(AutoPackages.FeatureName, $"Install auto package (Skip on conflicts): \"{file.FullName}\"");
       
       using (new SecurityDisabler())
       {

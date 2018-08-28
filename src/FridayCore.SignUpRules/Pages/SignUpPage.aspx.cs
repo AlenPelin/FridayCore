@@ -130,7 +130,11 @@ namespace FridayCore.Pages
       }
       catch (Exception ex)
       {
-        FridayLog.Error(SignUpRules.FeatureName, $"Failed to create user account, UserName: {name}, Email: {email}", ex);
+        var error = $"Failed to create user account, " +
+                    $"UserName: \"{name}\", " +
+                    $"Email: \"{email}\"";
+
+        FridayLog.Error(SignUpRules.FeatureName, error, ex);
 
         RenderError($"Failed to create user account, contact your administrator with this reference: {Settings.InstanceName}-{DateTime.Now:yyMMddhhmmss}", true);
       }

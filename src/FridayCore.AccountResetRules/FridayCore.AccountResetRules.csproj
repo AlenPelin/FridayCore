@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="Configuration\AccountResetRules.cs" />
     <Compile Include="Model\AccountInfo.cs" />
+    <Compile Include="Pipelines\Loader\EmailNotificationUtil.cs" />
     <Compile Include="Pipelines\Loader\ResetUserAccounts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
