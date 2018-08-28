@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Web.Security;
 using Sitecore.Events.Hooks;
@@ -6,12 +7,16 @@ using Sitecore.Events.Hooks;
 using FridayCore.Security.MembershipExtensions;
 using FridayCore.Configuration;
 using Sitecore;
+using Sitecore.Data.Items;
 using Sitecore.Pipelines;
+using Sitecore.Pipelines.PasswordRecovery;
 
 namespace FridayCore.Pipelines.Loader
 {
   internal class ResetUserAccounts
   {
+    private EmailNotificationUtil Helper { get; } = new EmailNotificationUtil();
+
     private MembershipProvider MembershipProvider { get; }
 
     public ResetUserAccounts()
@@ -66,13 +71,21 @@ namespace FridayCore.Pipelines.Loader
             try
             {
               user.ChangePassword(password, desiredPassword);
-
-              FridayLog.Info(AccountResetRules.FeatureName, $"User account was reset, UserName: {username}, Password: {(account.WritePasswordToLog ? desiredPassword : "*******")}, IsLockedOut: false");
             }
             catch (Exception ex)
             {
               FridayLog.Error(AccountResetRules.FeatureName, $"User account was reset, but failed to change password to desired one, UserName: {username}, CurrentPassword: {password}, DesiredPassword: {desiredPassword} IsLockedOut: false", ex);
+
+              continue;
             }
+          }
+
+          FridayLog.Info(AccountResetRules.FeatureName, $"User account was reset, UserName: {username}, Password: {(account.WritePasswordToLog ? (desiredPassword ?? password) : "*******")}, IsLockedOut: false");
+          
+          var recepients = account.EmailPasswordToRecepients;
+          if (recepients.Any())
+          {
+            Helper.SendMailMessageAsync(user, desiredPassword ?? password, recepients);
           }
         }
         catch (Exception ex)

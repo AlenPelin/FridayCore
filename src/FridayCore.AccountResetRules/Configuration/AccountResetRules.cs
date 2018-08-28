@@ -83,7 +83,41 @@ namespace FridayCore.Configuration
         throw new ConfigurationException(message);
       }
 
-      return new AccountInfo(userName, account.GetAttribute("password"), writePasswordToLog);
+      var emailPasswordToRecepients = ParseEmailPasswordToRecepients(ruleXPath, account);
+
+      return new AccountInfo(userName, account.GetAttribute("password"), emailPasswordToRecepients, writePasswordToLog);
+    }
+
+    private static IReadOnlyList<string> ParseEmailPasswordToRecepients(string ruleXPath, XmlElement account)
+    {
+      const string name = "emailPasswordTo";
+
+      var list = new List<string>();
+      var recepients = account.GetAttribute(name).Split(",;|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+      foreach (var recepient in recepients)
+      {
+        var email = recepient?.Trim();
+        if (string.IsNullOrEmpty(email))
+        {
+          continue;
+        }
+
+        if (!email.Contains('@'))
+        {
+          var message =
+            $"The {ruleXPath} element's {name} attribute value " +
+            $"represents invalid email \"{email}\". " +
+            $"Expected format is \"domain\\username\"\r\n" +
+            $"\r\n" +
+            $"XML:\r\n{account.OuterXml}";
+
+          throw new ConfigurationException(message);
+        }
+
+        list.Add(recepient);
+      }
+
+      return list;
     }
   }
 }
