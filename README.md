@@ -1,6 +1,8 @@
 # FRIDAY CORE
 
-FridayCore is a set of Sitecore extensions that every Sitecore site needs.
+**FridayCore** is a set of Sitecore extensions that every Sitecore site needs.
+
+**FridayCore XA** is only designed for **Sitecore Experience Accelerator**-powered (aka SXA) Sitecore sites. 
 
 Check [FridayCore.Sample](https://github.com/AlenPelin/FridayCore/tree/sample) project to try it at home.
 
@@ -65,13 +67,25 @@ Install-Package FridayCore.AutoPackages
 
 ## Feature 4. Sitecore started event
 
-This feature does is enabled by default because all it does is writes to the log file straight after
+This feature is enabled by default because all it does is writes to the log file straight after
 the Sitecore has served first HTTP request, and also raises an even so custom logic can fire at the same moment.
 
 Install this feature using this command:
 
 ```ps1
 Install-Package FridayCore.SitecoreStarted
+```
+
+## Feature 5 (XA). Error pages delivery
+
+This feature is enabled by default because reasonable person would expect it available out of box. It triggers 
+static 500 error page file re-generation on all Sitecore instances, while OOB a human must press a button and
+copy ErrorPages/*.html file from CM to all CD instances.
+
+Install this feature using this command:
+
+```ps1
+Install-Package FridayCore.XA.ErrorPagesDelivery
 ```
 
 ## How to build

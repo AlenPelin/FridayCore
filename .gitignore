@@ -18,3 +18,7 @@ src/FridayCore.SitecoreStarted/bin/
 src/FridayCore.SitecoreStarted/obj/
 src/FridayCore/Properties/VersionInfo.cs
 src/packages/
+src/FridayCore.XA/bin/
+src/FridayCore.XA/obj/
+src/FridayCore.XA.ErrorPagesDelivery/bin/
+src/FridayCore.XA.ErrorPagesDelivery/obj/
