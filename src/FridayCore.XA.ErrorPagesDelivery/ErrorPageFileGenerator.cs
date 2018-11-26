@@ -5,6 +5,7 @@ using Sitecore;
 using Sitecore.Configuration;
 using Sitecore.DependencyInjection;
 using Sitecore.Diagnostics;
+using Sitecore.Sites;
 using Sitecore.XA.Feature.ErrorHandling;
 using Sitecore.XA.Foundation.Multisite;
 using Sitecore.XA.Foundation.Multisite.SiteResolvers;
@@ -66,7 +67,10 @@ namespace FridayCore.XA.ErrorPagesDelivery
               var targetDatabase = Factory.GetDatabase(contentDatabaseName);
 
               Log.Info($"Generating static error page, site: {siteName}", this);
-              PageRenderer.GenerateStaticErrorPage(siteInfo, targetDatabase);
+              using (new SiteContextSwitcher(SiteContextFactory.GetSiteContext(siteName)))
+              {
+                PageRenderer.GenerateStaticErrorPage(siteInfo, targetDatabase);
+              }
             }
             catch (Exception ex)
             {
