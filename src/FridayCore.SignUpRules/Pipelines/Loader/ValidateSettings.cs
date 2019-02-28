@@ -17,7 +17,7 @@ namespace FridayCore.Pipelines.Loader
         var domains = SignUpRules.Rules;
         if (domains.Count == 0)
         {
-          FridayLog.Info(SignUpRules.FeatureName, $"Feature is disabled.");
+          FridayLog.Info(SignUpRules.FeatureName, $"Feature is disabled. Refer to the corresponding configuration file for instructions.");
 
           return;
         }
@@ -46,7 +46,7 @@ namespace FridayCore.Pipelines.Loader
       }
       catch (Exception ex)
       {
-        throw new ConfigurationException("The FridayCore.SignUpRules extension is configured incorrectly. See inner exception for details.", ex);
+        throw new ConfigurationException($"The {SignUpRules.FeatureName} extension is configured incorrectly. See inner exception for details.", ex);
       }
     }
   }

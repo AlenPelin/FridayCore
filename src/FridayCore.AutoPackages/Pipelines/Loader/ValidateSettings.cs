@@ -14,7 +14,7 @@ namespace FridayCore.Pipelines.Loader
       // Sitecore start successfully when feature is misconfigured
       if (!AutoPackages.Enabled)
       {
-        FridayLog.Info(AutoPackages.FeatureName, $"Feature is disabled.");
+        FridayLog.Info(AutoPackages.FeatureName, $"Feature is disabled. Refer to the corresponding configuration file for instructions.");
       }
     }
   }

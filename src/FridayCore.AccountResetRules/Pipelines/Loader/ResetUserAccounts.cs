@@ -34,7 +34,7 @@ namespace FridayCore.Pipelines.Loader
     {
       if (!AccountResetRules.Enabled)
       {
-        FridayLog.Info(AccountResetRules.FeatureName, $"Feature is disabled.");
+        FridayLog.Info(AccountResetRules.FeatureName, $"Feature is disabled. Refer to the corresponding configuration file for instructions.");
 
         return;
       }

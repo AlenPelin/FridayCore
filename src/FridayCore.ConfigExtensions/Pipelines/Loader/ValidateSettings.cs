@@ -18,7 +18,7 @@ namespace FridayCore.Pipelines.Loader
           return;
         }
         
-        FridayLog.Info(ConfigExtensions.FeatureName, $"Feature is disabled.");
+        FridayLog.Info(ConfigExtensions.FeatureName, $"Feature is disabled. Refer to the corresponding configuration file for instructions.");
       }
       catch (Exception ex)
       {
