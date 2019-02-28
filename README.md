@@ -88,6 +88,42 @@ Install this feature using this command:
 Install-Package FridayCore.XA.ErrorPagesDelivery
 ```
 
+## Feature 6. Config Extensions
+
+Enable $(connectionstring:key/property) syntax in configuration files to embed connection string or its part into
+any place in configuration file.
+
+_For example,_ `ConnectionStrings.config` file
+
+```xml
+<connectionStrings>
+...
+  <add name="smtp" connectionString="Data Source=localhost,25; User ID=smtpusername; Password=smtppassword" />
+...
+</connectionStrings>
+```
+
+and `/App_Config/Environment/MailServer.config` file
+
+```xml
+<configuration>
+<sitecore>
+  <settings>
+    <setting name="MailServer" value="$(connectionstring:smtp/DataSource)" />
+    <setting name="MailServerUserName" value="$(connectionstring:smtp/username)" />
+    <setting name="MailServerPassword" value="$(connectionstring:smtp/Password)" />
+    <setting name="MailServerPort" value="$(connectionstring:smtp/port)" />
+  </settings>
+</configuration>
+</sitecore>
+```
+
+Install this feature using this command:
+
+```ps1
+Install-Package FridayCore.ConfigExtensions
+```
+
 ## How to build
 
 1. *(Optional)* Update version in `.appveyor.yml` file.

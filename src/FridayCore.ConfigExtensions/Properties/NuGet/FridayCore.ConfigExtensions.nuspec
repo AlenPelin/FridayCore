@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FridayCore.ConfigExtensions</id>
+    <version>0.0.0.0</version>
+    <title></title>
+    <authors>Alen Pelin</authors>
+    <owners>Alen Pelin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ConfigExtensions feature of FridayCore package.</description>
+    <dependencies>
+      <dependency id="FridayCore.Common" version="0.0.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\App_Config\Include\FridayCore\FridayCore.ConfigExtensions.config" target="content\App_Config\Include\FridayCore\FridayCore.ConfigExtensions.config" />
+    <file src="..\..\bin\Release\FridayCore.ConfigExtensions.dll" target="lib\FridayCore.ConfigExtensions.dll" />
+    <file src="..\..\bin\Release\FridayCore.ConfigExtensions.pdb" target="lib\FridayCore.ConfigExtensions.pdb" />
+  </files>
+</package>
