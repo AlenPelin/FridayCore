@@ -10,22 +10,38 @@ using Sitecore;
 using Sitecore.Data.Items;
 using Sitecore.Pipelines;
 using Sitecore.Pipelines.PasswordRecovery;
+using Sitecore.Diagnostics;
 
 namespace FridayCore.Pipelines.Loader
 {
   internal class ResetUserAccounts
   {
+    private const bool IsAsyncDefault = false;
+
+    private bool IsAsync { get; }
+
     private EmailNotificationUtil Helper { get; } = new EmailNotificationUtil();
 
     private MembershipProvider MembershipProvider { get; }
 
     public ResetUserAccounts()
-      : this(Membership.Provider)
+      : this(IsAsyncDefault)
     {
     }
 
-    internal ResetUserAccounts(MembershipProvider membershipProvider)
+    public ResetUserAccounts(string isAsync)
+      : this(MainUtil.StringToBool(isAsync, IsAsyncDefault))
     {
+    }
+
+    public ResetUserAccounts(bool isAsync)
+      : this(isAsync, Membership.Provider)
+    {
+    }
+
+    internal ResetUserAccounts(bool async, MembershipProvider membershipProvider)
+    {
+      IsAsync = async;
       MembershipProvider = membershipProvider;
     }
 
@@ -35,6 +51,13 @@ namespace FridayCore.Pipelines.Loader
       if (!AccountResetRules.Enabled)
       {
         FridayLog.Info(AccountResetRules.FeatureName, $"Feature is disabled. Refer to the corresponding configuration file for instructions.");
+
+        return;
+      }
+
+      if (!IsAsync)
+      {
+        DoWork(null);
 
         return;
       }
@@ -73,7 +96,7 @@ namespace FridayCore.Pipelines.Loader
           {
             try
             {
-              user.ChangePassword(password, desiredPassword);
+              Assert.IsTrue(user.ChangePassword(password, desiredPassword), "Membership provider rejected password change request.");
             }
             catch (Exception ex)
             {
