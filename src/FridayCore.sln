@@ -3,18 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore", "FridayCore\FridayCore.csproj", "{265F6A59-EE51-4056-9565-83719FAE9B82}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.SignUpRules", "FridayCore.SignUpRules\FridayCore.SignUpRules.csproj", "{E509831A-DBE6-452D-8470-CEFD7D712ED6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.Common", "FridayCore.Common\FridayCore.Common.csproj", "{A0C116FA-7E13-4AE4-BE83-FF8115A0D275}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.SitecoreStarted", "FridayCore.SitecoreStarted\FridayCore.SitecoreStarted.csproj", "{2BEF4768-8143-4CAA-80DF-2FF4AAFA1B04}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.AccountResetRules", "FridayCore.AccountResetRules\FridayCore.AccountResetRules.csproj", "{C21E36DE-C888-4C2F-994D-77133A70C080}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.AutoPackages", "FridayCore.AutoPackages\FridayCore.AutoPackages.csproj", "{DF48E31F-0CE2-4649-BAF3-F795654711D8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{AE27C123-6E74-48C9-9693-C64BF0C43066}"
 	ProjectSection(SolutionItems) = preProject
 		..\.appveyor.yml = ..\.appveyor.yml
@@ -30,15 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".about", ".about", "{9F5709
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Project", "3. Project", "{BCF87636-268C-4802-8103-8E645627E5B2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Foundation", "1. Foundation", "{2350C04F-FD7D-46B0-8281-6A173BDBF108}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Features", "2. Features", "{F6DCA0D5-C804-47B1-82EE-42DD74C9143F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.XA.ErrorPagesDelivery", "FridayCore.XA.ErrorPagesDelivery\FridayCore.XA.ErrorPagesDelivery.csproj", "{E9FA5A0D-4D2E-42B7-B6F1-AE9738264A58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.XA", "FridayCore.XA\FridayCore.XA.csproj", "{3065BBDF-14A1-43C8-8790-B8B1878D37D4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.ConfigExtensions", "FridayCore.ConfigExtensions\FridayCore.ConfigExtensions.csproj", "{CCE851E8-C40B-4C56-BC09-B6E21B43D659}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,30 +30,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{265F6A59-EE51-4056-9565-83719FAE9B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{265F6A59-EE51-4056-9565-83719FAE9B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{265F6A59-EE51-4056-9565-83719FAE9B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{265F6A59-EE51-4056-9565-83719FAE9B82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E509831A-DBE6-452D-8470-CEFD7D712ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E509831A-DBE6-452D-8470-CEFD7D712ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E509831A-DBE6-452D-8470-CEFD7D712ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E509831A-DBE6-452D-8470-CEFD7D712ED6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0C116FA-7E13-4AE4-BE83-FF8115A0D275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0C116FA-7E13-4AE4-BE83-FF8115A0D275}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0C116FA-7E13-4AE4-BE83-FF8115A0D275}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0C116FA-7E13-4AE4-BE83-FF8115A0D275}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BEF4768-8143-4CAA-80DF-2FF4AAFA1B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BEF4768-8143-4CAA-80DF-2FF4AAFA1B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BEF4768-8143-4CAA-80DF-2FF4AAFA1B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BEF4768-8143-4CAA-80DF-2FF4AAFA1B04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C21E36DE-C888-4C2F-994D-77133A70C080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C21E36DE-C888-4C2F-994D-77133A70C080}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C21E36DE-C888-4C2F-994D-77133A70C080}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C21E36DE-C888-4C2F-994D-77133A70C080}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF48E31F-0CE2-4649-BAF3-F795654711D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF48E31F-0CE2-4649-BAF3-F795654711D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF48E31F-0CE2-4649-BAF3-F795654711D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF48E31F-0CE2-4649-BAF3-F795654711D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E9FA5A0D-4D2E-42B7-B6F1-AE9738264A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E9FA5A0D-4D2E-42B7-B6F1-AE9738264A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9FA5A0D-4D2E-42B7-B6F1-AE9738264A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -78,24 +38,13 @@ Global
 		{3065BBDF-14A1-43C8-8790-B8B1878D37D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3065BBDF-14A1-43C8-8790-B8B1878D37D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3065BBDF-14A1-43C8-8790-B8B1878D37D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCE851E8-C40B-4C56-BC09-B6E21B43D659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCE851E8-C40B-4C56-BC09-B6E21B43D659}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCE851E8-C40B-4C56-BC09-B6E21B43D659}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCE851E8-C40B-4C56-BC09-B6E21B43D659}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{265F6A59-EE51-4056-9565-83719FAE9B82} = {BCF87636-268C-4802-8103-8E645627E5B2}
-		{E509831A-DBE6-452D-8470-CEFD7D712ED6} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
-		{A0C116FA-7E13-4AE4-BE83-FF8115A0D275} = {2350C04F-FD7D-46B0-8281-6A173BDBF108}
-		{2BEF4768-8143-4CAA-80DF-2FF4AAFA1B04} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
-		{C21E36DE-C888-4C2F-994D-77133A70C080} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
-		{DF48E31F-0CE2-4649-BAF3-F795654711D8} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
 		{E9FA5A0D-4D2E-42B7-B6F1-AE9738264A58} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
 		{3065BBDF-14A1-43C8-8790-B8B1878D37D4} = {BCF87636-268C-4802-8103-8E645627E5B2}
-		{CCE851E8-C40B-4C56-BC09-B6E21B43D659} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB2362E3-F38C-47DF-8FD8-37C1FAAB441B}
