@@ -2,11 +2,9 @@
 
 **FridayCore** is a set of Sitecore extensions that every Sitecore site needs.
 
-**FridayCore XA** is only designed for **Sitecore Experience Accelerator**-powered (aka SXA) Sitecore sites. 
+**FridayCore XA** is also available in [feature/xa](https://github.com/AlenPelin/FridayCore/tree/feature/xa) branch and it is only designed for **Sitecore Experience Accelerator**-powered (aka SXA) Sitecore sites.
 
-Check [FridayCore.Sample](https://github.com/AlenPelin/FridayCore/tree/sample) project to try it at home.
-
-Install all features using this command:
+Install all **non-XA** features using this command:
 
 ```ps1
 Install-Package FridayCore
@@ -39,7 +37,7 @@ Reset specific user accounts on every Sitecore restart (for example, well-known
 
 * Reset password and write it to the log file
 * Unlock the account if it is locked out
- 
+
 **Note,** it is common practice of writing admin password to the log file. It is typically very safe because users that
 have access to the file system of the web server can do whatever thay want anyway.
 
@@ -76,19 +74,7 @@ Install this feature using this command:
 Install-Package FridayCore.SitecoreStarted
 ```
 
-## Feature 5 (XA). Error pages delivery
-
-This feature is enabled by default because reasonable person would expect it available out of box. It triggers 
-static 500 error page file re-generation on all Sitecore instances, while OOB a human must press a button and
-copy ErrorPages/*.html file from CM to all CD instances.
-
-Install this feature using this command:
-
-```ps1
-Install-Package FridayCore.XA.ErrorPagesDelivery
-```
-
-## Feature 6. Config Extensions
+## Feature 5. Config Extensions
 
 Enable $(connectionstring:key/property) syntax in configuration files to embed connection string or its part into
 any place in configuration file.
@@ -123,12 +109,5 @@ Install this feature using this command:
 ```ps1
 Install-Package FridayCore.ConfigExtensions
 ```
-
-## How to build
-
-1. *(Optional)* Update version in `.appveyor.yml` file.
-2. Open `Command Prompt` in current folder
-3. Run `npm install && npm run build`
-4. Inspect `Release` folder
 
 ![yay! it's friday](https://user-images.githubusercontent.com/2854666/41104450-b86c2058-6aae-11e8-88ef-7bbafcc799c3.png)
