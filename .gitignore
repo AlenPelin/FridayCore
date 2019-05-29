@@ -1,4 +1,5 @@
 *.user
+*.pubxml
 .idea/
 .vs/
 node_modules/
