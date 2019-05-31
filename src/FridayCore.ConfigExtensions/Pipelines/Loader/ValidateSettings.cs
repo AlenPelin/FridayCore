@@ -6,24 +6,24 @@ using Sitecore.Pipelines;
 
 namespace FridayCore.Pipelines.Loader
 {
-  public class ValidateSettings
-  {
-    [UsedImplicitly]
-    internal void Process(PipelineArgs args)
+    public class ValidateSettings
     {
-      try
-      {
-        if (ConfigExtensions.Enabled)
+        [UsedImplicitly]
+        internal void Process(PipelineArgs args)
         {
-          return;
+            try
+            {
+                if (ConfigExtensions.Enabled)
+                {
+                    return;
+                }
+
+                FridayLog.Info(ConfigExtensions.FeatureName, "Feature is disabled. Refer to the corresponding configuration file for instructions.");
+            }
+            catch (Exception ex)
+            {
+                throw new ConfigurationException($"The {ConfigExtensions.FeatureName} extension is configured incorrectly. See inner exception for details.", ex);
+            }
         }
-        
-        FridayLog.Info(ConfigExtensions.FeatureName, $"Feature is disabled. Refer to the corresponding configuration file for instructions.");
-      }
-      catch (Exception ex)
-      {
-        throw new ConfigurationException($"The {ConfigExtensions.FeatureName} extension is configured incorrectly. See inner exception for details.", ex);
-      }
     }
-  }
 }

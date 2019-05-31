@@ -1,48 +1,49 @@
-﻿using FridayCore.Events;
+﻿using System;
+using System.Threading;
+using FridayCore.Events;
+using Sitecore;
 using Sitecore.Events;
 using Sitecore.Pipelines.HttpRequest;
-using System;
-using System.Threading;
-using Sitecore;
 
 namespace FridayCore.Pipelines.HttpRequest
 {
-  internal class RaiseEventOnce
-  {
-    [NotNull]
-    private static readonly object SyncRoot = new object();
-
-    private bool Done { get; set; }
-
-    [UsedImplicitly]
-    internal void Process(HttpRequestArgs args)
+    internal class RaiseEventOnce
     {
-      if (Done)
-      {
-        return;
-      }
+        [NotNull]
+        private static readonly object SyncRoot = new object();
 
-      lock (SyncRoot)
-      {
-        if (Done)
+        private bool Done { get; set; }
+
+        [UsedImplicitly]
+        internal void Process(HttpRequestArgs args)
         {
-          return;
+            if (Done)
+            {
+                return;
+            }
+
+            lock (SyncRoot)
+            {
+                if (Done)
+                {
+                    return;
+                }
+
+                new Thread(
+                    () =>
+                    {
+                        try
+                        {
+                            Event.RaiseEvent(SitecoreStarted.EventName, new EventArgs());
+                        }
+                        catch (Exception ex)
+                        {
+                            FridayLog.Error(SitecoreStarted.FeatureName, $"Failed to process \"{SitecoreStarted.EventName}\" event", ex);
+                        }
+                    }).Start();
+
+                Done = true;
+            }
         }
-
-        new Thread(() =>
-        {
-          try
-          {
-            Event.RaiseEvent(SitecoreStarted.EventName, new EventArgs());
-          }
-          catch (Exception ex)
-          {
-             FridayLog.Error(SitecoreStarted.FeatureName, $"Failed to process \"{SitecoreStarted.EventName}\" event", ex);
-          }
-        }).Start();
-
-        Done = true;
-      }
     }
-  }
 }

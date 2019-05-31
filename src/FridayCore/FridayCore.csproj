@@ -55,8 +55,8 @@
     <Content Include="..\FridayCore.AutoPackages\App_Config\Include\FridayCore\FridayCore.AutoPackages.config">
       <Link>App_Config\Include\FridayCore\FridayCore.AutoPackages.config</Link>
     </Content>
-    <None Include="Properties\NuGet\FridayCore.nuspec" />
-    <None Include="Properties\PublishProfiles\Deploy.pubxml" />
+    <None Include="Properties\NuGet\*.nuspec" />
+    <None Include="Properties\PublishProfiles\*.pubxml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
