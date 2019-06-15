@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
+using System.Web;
 using FridayCore.Events;
 using Sitecore;
 using Sitecore.Events;
@@ -7,12 +9,19 @@ using Sitecore.Pipelines.HttpRequest;
 
 namespace FridayCore.Pipelines.HttpRequest
 {
-    internal class RaiseEventOnce
+    public class RaiseEventOnce
     {
         [NotNull]
         private static readonly object SyncRoot = new object();
+        private static readonly Stopwatch Timer = new Stopwatch();
 
         private bool Done { get; set; }
+
+        public static void Initialize()
+        {
+            Timer.Start();
+            FridayLog.Info(SitecoreStarted.FeatureName, $"Sitecore is initializing...");
+        }
 
         [UsedImplicitly]
         internal void Process(HttpRequestArgs args)
@@ -28,6 +37,9 @@ namespace FridayCore.Pipelines.HttpRequest
                 {
                     return;
                 }
+
+                Timer.Stop();
+                FridayLog.Info(SitecoreStarted.FeatureName, $"Sitecore is up and serving requests. Elapsed: \"{Timer.Elapsed}\", First Request: \"{HttpContext.Current.Request.RawUrl}\"");
 
                 new Thread(
                     () =>
