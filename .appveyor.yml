@@ -1,22 +1,22 @@
 version: 0.0.4.{build}
 
 branches:
-  only:
-    - master
+    only:
+        - master
 
 skip_tags: true
 
 image:
-  - Visual Studio 2017
-    
+    - Visual Studio 2017
+
 matrix:
-  fast_finish: true
+    fast_finish: true
 
 build_script:
-  - cmd: |
-      echo %APPVEYOR_BUILD_VERSION% > .version
-      npm install
-      npm run build
-            
+    - cmd: |
+          cd src
+          echo %APPVEYOR_BUILD_VERSION% > .version
+          .\build.ps1 --target Pack --configuration Release
+
 artifacts:
-  - path: release/**
+    - path: artifacts/**

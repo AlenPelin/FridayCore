@@ -15,12 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.AccountResetRule
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.AutoPackages", "FridayCore.AutoPackages\FridayCore.AutoPackages.csproj", "{DF48E31F-0CE2-4649-BAF3-F795654711D8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{AE27C123-6E74-48C9-9693-C64BF0C43066}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AE27C123-6E74-48C9-9693-C64BF0C43066}"
 	ProjectSection(SolutionItems) = preProject
-		..\.appveyor.yml = ..\.appveyor.yml
-		..\etc\gulpfile.js = ..\etc\gulpfile.js
 		.nuget\NuGet.config = .nuget\NuGet.config
-		..\etc\package.json = ..\etc\package.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".about", ".about", "{9F570922-078D-4753-B9EC-6C2E90AF6562}"
@@ -36,12 +33,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Features", "2. Features"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.ConfigExtensions", "FridayCore.ConfigExtensions\FridayCore.ConfigExtensions.csproj", "{CCE851E8-C40B-4C56-BC09-B6E21B43D659}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{942617DB-B382-4E71-B20C-3B4D3AECBF93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "Build\Build.csproj", "{D5ADB999-FAC8-4A34-8218-05240C7F5546}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5ADB999-FAC8-4A34-8218-05240C7F5546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5ADB999-FAC8-4A34-8218-05240C7F5546}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{265F6A59-EE51-4056-9565-83719FAE9B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{265F6A59-EE51-4056-9565-83719FAE9B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{265F6A59-EE51-4056-9565-83719FAE9B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -82,6 +85,7 @@ Global
 		{C21E36DE-C888-4C2F-994D-77133A70C080} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
 		{DF48E31F-0CE2-4649-BAF3-F795654711D8} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
 		{CCE851E8-C40B-4C56-BC09-B6E21B43D659} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
+		{D5ADB999-FAC8-4A34-8218-05240C7F5546} = {942617DB-B382-4E71-B20C-3B4D3AECBF93}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB2362E3-F38C-47DF-8FD8-37C1FAAB441B}

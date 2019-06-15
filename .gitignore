@@ -2,8 +2,10 @@
 *.pubxml
 .idea/
 .vs/
-node_modules/
-release/
+artifacts/
+src/.tmp/
+src/Build/bin/
+src/Build/obj/
 src/FridayCore/bin/
 src/FridayCore/obj/
 src/FridayCore.AccountResetRules/bin/
