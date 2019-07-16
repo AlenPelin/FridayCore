@@ -1,7 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using FridayCore.Configuration;
 using Sitecore;
+using Sitecore.Configuration;
 using Sitecore.Events.Hooks;
 using Sitecore.Install;
 using Sitecore.Install.Files;
@@ -70,17 +73,30 @@ namespace FridayCore.Hooks
                 return;
             }
 
+            var filenameWithoutExtension = Path.GetFileNameWithoutExtension(file.Name);
+            using (new SecurityDisabler())
+            {
+                var db = Factory.GetDatabase("core");
+                var historyItem = db.GetItem("/sitecore/system/Packages/Installation history");
+                if (historyItem.Children.Any(x => string.Equals(x.Name, filenameWithoutExtension, StringComparison.OrdinalIgnoreCase)))
+                {
+                    FridayLog.Info(AutoPackages.FeatureName, $"Install auto package skipped (already installed): \"{file.FullName}\"");
+
+                    return;
+                }
+            }
+
             FridayLog.Info(AutoPackages.FeatureName, $"Install auto package (Skip on conflicts): \"{file.FullName}\"");
 
             using (new SecurityDisabler())
             {
                 var context = new SimpleProcessingContext();
                 // IItemInstallerEvents type cast is essential
-                var items = (IItemInstallerEvents) new DefaultItemInstallerEvents(new BehaviourOptions(InstallMode.Skip, MergeMode.Undefined));
+                var items = (IItemInstallerEvents)new DefaultItemInstallerEvents(new BehaviourOptions(InstallMode.Skip, MergeMode.Undefined));
                 context.AddAspect(items);
 
                 // IFileInstallerEvents type cast is essential
-                var files = (IFileInstallerEvents) new DefaultFileInstallerEvents(false);
+                var files = (IFileInstallerEvents)new DefaultFileInstallerEvents(false);
                 context.AddAspect(files);
 
                 new Installer().InstallPackage(file.FullName, context);
