@@ -5,7 +5,10 @@ using System.Threading;
 using FridayCore.Configuration;
 using Sitecore;
 using Sitecore.Configuration;
+using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
 using Sitecore.Events.Hooks;
+using Sitecore.Globalization;
 using Sitecore.Install;
 using Sitecore.Install.Files;
 using Sitecore.Install.Framework;
@@ -74,8 +77,11 @@ namespace FridayCore.Hooks
             }
 
             var filenameWithoutExtension = Path.GetFileNameWithoutExtension(file.Name);
+            filenameWithoutExtension = ItemUtil.ProposeValidItemName(filenameWithoutExtension);
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(filenameWithoutExtension), "The package should be renamed to something that item can have name of: " + file.Name);
+            
             using (new SecurityDisabler())
-            {
+            {                
                 var db = Factory.GetDatabase("core");
                 var historyItem = db.GetItem("/sitecore/system/Packages/Installation history");
                 if (historyItem.Children.Any(x => string.Equals(x.Name, filenameWithoutExtension, StringComparison.OrdinalIgnoreCase)))
@@ -85,6 +91,18 @@ namespace FridayCore.Hooks
                     return;
                 }
             }
+
+            // The way how SC creates history item it cumbersome - it has some non-obvious length limitations
+            // so add extra logic to work around it.
+            var historyFile = new FileInfo(file.FullName + ".history.txt");
+            if (historyFile.Exists)
+            {
+                FridayLog.Info(AutoPackages.FeatureName, $"Install auto package skipped (already installed): \"{file.FullName}\"");
+
+                return;
+            }
+
+            File.AppendAllText(historyFile.FullName, DateTime.UtcNow.ToString("o") + "\r\n");
 
             FridayLog.Info(AutoPackages.FeatureName, $"Install auto package (Skip on conflicts): \"{file.FullName}\"");
 
