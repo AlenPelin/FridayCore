@@ -110,11 +110,11 @@ namespace FridayCore.Hooks
             {
                 var context = new SimpleProcessingContext();
                 // IItemInstallerEvents type cast is essential
-                var items = (IItemInstallerEvents)new DefaultItemInstallerEvents(new BehaviourOptions(InstallMode.Skip, MergeMode.Undefined));
+                var items = (IItemInstallerEvents)new DefaultItemInstallerEvents(new BehaviourOptions(InstallMode.Overwrite, MergeMode.Undefined));
                 context.AddAspect(items);
 
                 // IFileInstallerEvents type cast is essential
-                var files = (IFileInstallerEvents)new DefaultFileInstallerEvents(false);
+                var files = (IFileInstallerEvents)new DefaultFileInstallerEvents(true);
                 context.AddAspect(files);
 
                 new Installer().InstallPackage(file.FullName, context);
