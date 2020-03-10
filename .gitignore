@@ -16,6 +16,8 @@ src/FridayCore.ConfigExtensions/bin/
 src/FridayCore.ConfigExtensions/obj/
 src/FridayCore.Sample/bin/
 src/FridayCore.Sample/obj/
+src/FridayCore.SharpItems/bin/
+src/FridayCore.SharpItems/obj/
 src/FridayCore.SignUpRules/bin/
 src/FridayCore.SignUpRules/obj/
 src/FridayCore.SitecoreStarted/bin/

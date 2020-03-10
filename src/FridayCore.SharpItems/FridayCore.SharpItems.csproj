@@ -6,13 +6,13 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{265F6A59-EE51-4056-9565-83719FAE9B82}</ProjectGuid>
+    <ProjectGuid>{55DA04C4-696E-488A-B8B0-F093F8A87033}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FridayCore</RootNamespace>
-    <AssemblyName>FridayCore</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <AssemblyName>FridayCore.SharpItems</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -22,6 +22,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +32,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <!-- relocate obj folder to .tmp/obj/[project]/[debug|release] to be able to use **\*.cs below -->
+    <IntermediateOutputPath>..\.tmp\obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,50 +43,40 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <!-- relocate obj folder to .tmp/obj/[project]/[debug|release] to be able to use **\*.cs below -->
+    <IntermediateOutputPath>..\.tmp\obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="..\FridayCore.SitecoreStarted\App_Config\Include\FridayCore\FridayCore.SitecoreStarted.config">
-      <Link>App_Config\Include\FridayCore\FridayCore.SitecoreStarted.config</Link>
-    </Content>
-    <Content Include="..\FridayCore.SignUpRules\App_Config\Include\FridayCore\FridayCore.SignUpRules.config">
-      <Link>App_Config\Include\FridayCore\FridayCore.SignUpRules.config</Link>
-    </Content>
-    <Content Include="..\FridayCore.AccountResetRules\App_Config\Include\FridayCore\FridayCore.AccountResetRules.config">
-      <Link>App_Config\Include\FridayCore\FridayCore.AccountResetRules.config</Link>
+    <Compile Include="Data\DatabaseName.cs" />
+    <Compile Include="Data\TemplateDef.cs" />
+    <Compile Include="Data\ISharpItemsModule.cs" />
+    <Compile Include="Hooks\EnsureUniformItems.cs" />
+    <Compile Include="Data\ItemDef.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Layouts\**\*">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="..\FridayCore.AutoPackages\App_Config\Include\FridayCore\FridayCore.AutoPackages.config">
-      <Link>App_Config\Include\FridayCore\FridayCore.AutoPackages.config</Link>
+    <Content Include="sitecore\**\*">
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="..\FridayCore.SharpItems\App_Config\Include\FridayCore\FridayCore.SharpItems.config">
-      <Link>App_Config\Include\FridayCore\FridayCore.SharpItems.config</Link>
+    <Content Include="sitecore modules\**\*">
+      <SubType>Designer</SubType>
     </Content>
-    <None Include="Properties\NuGet\*.nuspec" />
-    <None Include="Properties\PublishProfiles\*.pubxml" />
-    <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NO_CODE_HERE.txt" />
-    <Compile Include="Properties\VersionInfo.cs" />
-    <Compile Include="Properties\ProductInfo.cs" />
+    <Content Include="App_Config\Include\FridayCore\FridayCore.SharpItems.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="App_Data\**\*">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FridayCore.AccountResetRules\FridayCore.AccountResetRules.csproj">
-      <Project>{c21e36de-c888-4c2f-994d-77133a70c080}</Project>
-      <Name>FridayCore.AccountResetRules</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FridayCore.AutoPackages\FridayCore.AutoPackages.csproj">
-      <Project>{df48e31f-0ce2-4649-baf3-f795654711d8}</Project>
-      <Name>FridayCore.AutoPackages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FridayCore.SignUpRules\FridayCore.SignUpRules.csproj">
-      <Project>{e509831a-dbe6-452d-8470-cefd7d712ed6}</Project>
-      <Name>FridayCore.SignUpRules</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FridayCore.SitecoreStarted\FridayCore.SitecoreStarted.csproj">
-      <Project>{2bef4768-8143-4caa-80df-2ff4aafa1b04}</Project>
-      <Name>FridayCore.SitecoreStarted</Name>
-    </ProjectReference>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\..\..\uniform\connectors\Uniform.Sitecore\packages\Sitecore.Kernel.8.2.180406\lib\NET452\Sitecore.Kernel.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -96,18 +89,12 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53061/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="AfterBuildActions" AfterTargets="AfterBuild">
+    <Exec Command="&quot;$(MSBuildBinPath)\MSBuild.exe&quot; &quot;$(MSBuildProjectDirectory)\AfterBuild.proj&quot; /fileLogger" Condition="Exists('$(MSBuildProjectDirectory)\AfterBuild.proj')" />
+  </Target>
 </Project>

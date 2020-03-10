@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2018
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore", "FridayCore\FridayCore.csproj", "{265F6A59-EE51-4056-9565-83719FAE9B82}"
 EndProject
@@ -35,6 +35,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Features", "2. Features", "{F6DCA0D5-C804-47B1-82EE-42DD74C9143F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.ConfigExtensions", "FridayCore.ConfigExtensions\FridayCore.ConfigExtensions.csproj", "{CCE851E8-C40B-4C56-BC09-B6E21B43D659}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridayCore.SharpItems", "FridayCore.SharpItems\FridayCore.SharpItems.csproj", "{55DA04C4-696E-488A-B8B0-F093F8A87033}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +72,10 @@ Global
 		{CCE851E8-C40B-4C56-BC09-B6E21B43D659}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCE851E8-C40B-4C56-BC09-B6E21B43D659}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCE851E8-C40B-4C56-BC09-B6E21B43D659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55DA04C4-696E-488A-B8B0-F093F8A87033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55DA04C4-696E-488A-B8B0-F093F8A87033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55DA04C4-696E-488A-B8B0-F093F8A87033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55DA04C4-696E-488A-B8B0-F093F8A87033}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{C21E36DE-C888-4C2F-994D-77133A70C080} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
 		{DF48E31F-0CE2-4649-BAF3-F795654711D8} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
 		{CCE851E8-C40B-4C56-BC09-B6E21B43D659} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
+		{55DA04C4-696E-488A-B8B0-F093F8A87033} = {F6DCA0D5-C804-47B1-82EE-42DD74C9143F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB2362E3-F38C-47DF-8FD8-37C1FAAB441B}
