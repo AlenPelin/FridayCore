@@ -1,9 +1,12 @@
+.nuke
 *.user
 *.pubxml
 .idea/
 .vs/
-node_modules/
+.tmp/
 release/
+src/.build/bin/
+src/.build/obj/
 src/FridayCore/bin/
 src/FridayCore/obj/
 src/FridayCore.AccountResetRules/bin/
