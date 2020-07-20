@@ -48,13 +48,7 @@ function Invoke-NukeBuild {
 Push-Location $PSScriptRoot
 try {
     $LASTEXITCODE = 0;
-
-    Invoke-CreatePublishTargets -Force $Force -WebsiteRootPath $WebsiteRootPath
-
-    if ($LASTEXITCODE -ne 0) {
-        exit $LASTEXITCODE;
-    }
-
+    
     Invoke-RestoreDependencies
 
     if ($LASTEXITCODE -ne 0) {
