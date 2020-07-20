@@ -22,7 +22,7 @@ function Invoke-CompileNukeBuild {
         $MsbuildArgs += " -property:Configuration=$Configuration"
     }
 
-    $MsBuildPath = ..\..\setup\vswhere\vswhere.exe -latest -requires Microsoft.Component.MSBuild -products * -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+    $MsBuildPath = ..\tools\vswhere\vswhere.exe -latest -requires Microsoft.Component.MSBuild -products * -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
     if (-not $MsBuildPath) {
         Write-Error "Cannot find MSBuild"
         exit -1
@@ -48,7 +48,7 @@ function Invoke-NukeBuild {
 Push-Location $PSScriptRoot
 try {
     $LASTEXITCODE = 0;
-    
+
     Invoke-RestoreDependencies
 
     if ($LASTEXITCODE -ne 0) {
